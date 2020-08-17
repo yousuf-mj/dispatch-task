@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "npm run build && node dist/index",
-        "start:dev": "npm run build && nodemon ./dist/index -e ts",
+        "start:dev": "npm run build && nodemon dist/index",
         "build": "tsc",
         "test": "jest --verbose",
         "test:watch": "jest --watch"

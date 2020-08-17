@@ -27,6 +27,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 
+const indexRouter = require("./routes/index");
+
+app.use("/", indexRouter);
+
 // start the express server
 app.listen(port, () => {
     // tslint:disable-next-line:no-console
