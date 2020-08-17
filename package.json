@@ -1,0 +1,41 @@
+{
+    "name": "dispatch-task",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "npm run build && node dist/index",
+        "start:dev": "npm run build && nodemon ./dist/index -e ts",
+        "build": "tsc",
+        "test": "jest --verbose",
+        "test:watch": "jest --watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yousuf-mj/dispatch-task.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/yousuf-mj/dispatch-task/issues"
+    },
+    "homepage": "https://github.com/yousuf-mj/dispatch-task#readme",
+    "dependencies": {
+        "@types/express": "^4.17.7",
+        "@types/mongoose": "^5.7.36",
+        "@types/node": "^14.0.27",
+        "axios": "^0.19.2",
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.3",
+        "babel-loader": "^8.1.0",
+        "babel-preset-env": "^1.7.0",
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "jest": "^26.4.0",
+        "mongoose": "^5.10.0",
+        "nodemon": "^2.0.4",
+        "ts-jest": "^26.2.0",
+        "typescript": "^3.9.7"
+    }
+}
