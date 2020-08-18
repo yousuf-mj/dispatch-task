@@ -47,4 +47,37 @@ const create = async (id: Number, capacity: Number) => {
         return responseError(400, errorMessage);
     }
 };
-export { getAll, create };
+
+const update = async (id: Number, capacity: Number) => {
+    if (!Number.isInteger(capacity) && !Number.isInteger(id)) {
+        return responseError(400, {
+            success: false,
+            message: "incorrect input",
+        });
+    }
+
+    try {
+        const courier = await CourierModel.findOneAndUpdate(
+            { id },
+            { max_capacity: capacity },
+            { new: true }
+        );
+
+        const message = {
+            success: true,
+            message: "Successfully updated",
+            result: courier,
+        };
+
+        return responseSuccess(200, message);
+    } catch (error) {
+        console.error(error);
+        const errorMessage = {
+            success: false,
+            message: "error with creating a new courier",
+        };
+        return responseError(400, errorMessage);
+    }
+};
+
+export { getAll, create, update };

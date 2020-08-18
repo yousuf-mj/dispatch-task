@@ -1,5 +1,5 @@
 import express from "express";
-import { create, getAll } from "../courier";
+import { create, getAll, update } from "../courier";
 import { responseError, responseSuccess } from "../utils/response";
 const router = express.Router();
 
@@ -24,6 +24,20 @@ router.get("/lookup", async (req, res) => {
     const all: response = await getAll();
 
     res.status(all.statusCode).json(all.body);
+});
+
+router.patch("/:id", async (req, res) => {
+    const id: number = Number(req.params.id);
+    const capacity = req.body.max_capacity;
+
+    try {
+        const updateCourier: response = await update(id, capacity);
+
+        res.status(updateCourier.statusCode).json(updateCourier.body);
+    } catch (error) {
+        console.error(error);
+        res.status(400).json(responseError());
+    }
 });
 
 module.exports = router;
