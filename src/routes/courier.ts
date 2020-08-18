@@ -1,5 +1,13 @@
 import express from "express";
-import { create, getAll, update, search, findOne, pickup } from "../courier";
+import {
+    create,
+    getAll,
+    update,
+    search,
+    findOne,
+    pickup,
+    dropoff,
+} from "../courier";
 import { responseError, responseSuccess } from "../utils/response";
 const router = express.Router();
 
@@ -59,6 +67,20 @@ router.post("/pickup/:id", async (req, res) => {
 
     try {
         const updateCourier: response = await pickup(id, quantity);
+
+        res.status(updateCourier.statusCode).json(updateCourier.body);
+    } catch (error) {
+        console.error(error);
+        res.status(400).json(responseError());
+    }
+});
+
+router.post("/dropoff/:id", async (req, res) => {
+    const id: number = Number(req.params.id);
+    const quantity = req.body.quantity;
+
+    try {
+        const updateCourier: response = await dropoff(id, quantity);
 
         res.status(updateCourier.statusCode).json(updateCourier.body);
     } catch (error) {

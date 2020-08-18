@@ -13,6 +13,7 @@ const courierSchema = new Schema({
     },
     inventory: {
         type: Number,
+        min: 0,
     },
 });
 
