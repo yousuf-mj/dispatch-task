@@ -7,9 +7,13 @@ This is a basic api that handles deliveries for a courier. The api will show cou
 ## Setup
 
 The application is a simple express app than can be served locally by running below commands
+
 `npm i`
+
 `cp .env.example .env && npm start`
+
 The application will start ion port 8080 so the endpoint will be
+
 `localhost:8080/courier`
 
 ## Endpoints
