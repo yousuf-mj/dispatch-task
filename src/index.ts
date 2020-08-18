@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import * as dotenv from "dotenv";
 
+const autoIncrement = require("mongoose-auto-increment");
+
 const cors = require("cors");
 dotenv.config();
 
@@ -15,7 +17,8 @@ mongoose
         useCreateIndex: true,
         useFindAndModify: false,
     })
-    .then((con) => {
+    .then((connection) => {
+        autoIncrement.initialize(connection);
         console.log("DB connection successful");
     })
     .catch((error) => {

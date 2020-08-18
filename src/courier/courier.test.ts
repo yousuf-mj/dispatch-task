@@ -16,4 +16,6 @@ describe("Courier endpoint", () => {
 
         expect(response.success).toBeTruthy();
     });
+
+    it("should create a new courier entry", async () => {});
 });
