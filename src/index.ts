@@ -28,8 +28,10 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 const indexRouter = require("./routes/index");
+const courierRouter = require("./routes/courier");
 
 app.use("/", indexRouter);
+app.use("/courier", courierRouter);
 
 // start the express server
 app.listen(port, () => {
