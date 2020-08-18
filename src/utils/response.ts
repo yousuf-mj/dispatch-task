@@ -5,7 +5,7 @@ export interface IResponseError {
 
 export interface IErrorBody {
     success: boolean;
-    message: string;
+    message?: string;
     error?: object;
 }
 
@@ -16,7 +16,7 @@ export interface IResponseSuccess {
 
 export interface ISuccessBody {
     success: boolean;
-    message: string;
+    message?: string;
     result?: object;
 }
 

@@ -1,21 +1,44 @@
-import axios, { AxiosResponse } from "axios";
-import { getAll } from "./index";
-
-jest.mock("axios");
-const mockedAxios = axios as jest.Mocked<typeof axios>;
+import { CourierModel } from "../db/courierSchema";
+import mockingoose from "mockingoose";
 
 describe("Courier endpoint", () => {
-    it("GET should return all info for couriers", async () => {
-        const mockResponse = {
-            success: true,
-        };
+    it("should return all couriers", async () => {
+        const _doc = [
+            {
+                _id: "607f191e810c19729de861ea",
+                id: 1,
+                max_capacity: 20,
+            },
+            {
+                _id: "507f191e810c19729de860ea",
+                id: 2,
+                max_capacity: 20,
+            },
+        ];
 
-        mockedAxios.get.mockResolvedValue(mockResponse);
+        mockingoose(CourierModel).toReturn(_doc, "find");
 
-        const response = await getAll();
-
-        expect(response.success).toBeTruthy();
+        return CourierModel.find().then((doc) => {
+            expect(JSON.parse(JSON.stringify(doc))).toMatchObject(_doc);
+        });
     });
 
-    it("should create a new courier entry", async () => {});
+    it.only("should create a new courier", async () => {
+        const _doc = {
+            _id: "211f191e810c19729de861ea",
+            id: 1,
+            max_capacity: 20,
+        };
+
+        mockingoose(CourierModel).toReturn(_doc, "save");
+
+        const mockData = {
+            id: 1,
+            max_capacity: 20,
+        };
+
+        return CourierModel.create(mockData).then((doc) => {
+            expect(JSON.parse(JSON.stringify(doc))).toMatchObject(_doc);
+        });
+    });
 });
