@@ -124,4 +124,24 @@ const findOne = async (id: number) => {
     }
 };
 
-export { getAll, create, update, search, findOne };
+const pickup = async (id: number, quantity: number) => {
+    try {
+        const courier = await CourierModel.findOneAndUpdate(
+            { id },
+            { $inc: { inventory: quantity } },
+            { new: true }
+        );
+
+        const response = {
+            success: true,
+            results: courier,
+        };
+
+        return responseSuccess(200, response);
+    } catch (e) {
+        console.error(e);
+        return responseError(400);
+    }
+};
+
+export { getAll, create, update, search, findOne, pickup };

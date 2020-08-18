@@ -11,6 +11,9 @@ const courierSchema = new Schema({
         type: Number,
         required: true,
     },
+    inventory: {
+        type: Number,
+    },
 });
 
 const CourierModel = model("Courier", courierSchema);
