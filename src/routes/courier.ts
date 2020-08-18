@@ -1,5 +1,5 @@
 import express from "express";
-import { create, getAll, update } from "../courier";
+import { create, getAll, update, search, findOne } from "../courier";
 import { responseError, responseSuccess } from "../utils/response";
 const router = express.Router();
 
@@ -20,7 +20,20 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.get("/lookup/:id", async (req, res) => {
+    const id = Number(req.params.id);
+    const all: response = await findOne(id);
+
+    res.status(all.statusCode).json(all.body);
+});
+
 router.get("/lookup", async (req, res) => {
+    const all: response = await search(req.body);
+
+    res.status(all.statusCode).json(all.body);
+});
+
+router.get("/", async (req, res) => {
     const all: response = await getAll();
 
     res.status(all.statusCode).json(all.body);
